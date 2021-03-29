@@ -14,6 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CardLayout;
+import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.UIManager;
 
 public class Dashboard extends JFrame {
 
@@ -27,10 +32,32 @@ public class Dashboard extends JFrame {
 			.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 	private Image img_burger_menu = new ImageIcon(ViewLogin.class.getResource("/images/burger-menu-icon.png"))
 			.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+	
+	//Dashboar Icons
+	
+	private Image img_user = new ImageIcon(ViewLogin.class.getResource("/images/users-icon.png"))
+			.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+	
+	private Image img_admin = new ImageIcon(ViewLogin.class.getResource("/images/admins-icon.png"))
+			.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+	
+	private Image img_total = new ImageIcon(ViewLogin.class.getResource("/images/db-icon.png"))
+			.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+	
+	private Image img_clima = new ImageIcon(ViewLogin.class.getResource("/images/clima-icon.png"))
+			.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+	
+	private Image img_hora = new ImageIcon(ViewLogin.class.getResource("/images/relogio-icon.png"))
+			.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
 
 	private JPanel contentPane;
 	
 	int x = 300;
+	private JPanel panelContentHome = new JPanel();
+	private JPanel panelContentProfile = new JPanel();
+	private JTextField textFieldNome;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -62,6 +89,318 @@ public class Dashboard extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		panelContentProfile.setBackground(new Color(0, 128, 128));
+		panelContentProfile.setBounds(300, 0, 981, 720);
+		contentPane.add(panelContentProfile);
+		panelContentProfile.setLayout(null);
+		
+		JPanel cpDashBoard = new JPanel();
+		cpDashBoard.setBounds(12, 144, 475, 400);
+		panelContentProfile.add(cpDashBoard);
+		cpDashBoard.setLayout(null);
+		cpDashBoard.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		cpDashBoard.setBackground(new Color(0, 128, 128));
+		
+		JPanel panelCadastro = new JPanel();
+		panelCadastro.setLayout(null);
+		panelCadastro.setBackground(new Color(47, 79, 79));
+		panelCadastro.setBounds(77, 49, 314, 326);
+		cpDashBoard.add(panelCadastro);
+		
+		JLabel lblCadastrarUsuario = new JLabel("Cadastrar Usuario");
+		lblCadastrarUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrarUsuario.setForeground(Color.WHITE);
+		lblCadastrarUsuario.setBounds(77, 12, 164, 38);
+		panelCadastro.add(lblCadastrarUsuario);
+		
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setBounds(14, 62, 93, 25);
+		panelCadastro.add(lblNome);
+		
+		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail.setForeground(Color.WHITE);
+		lblEmail.setBounds(14, 99, 93, 25);
+		panelCadastro.add(lblEmail);
+		
+		JLabel lblTel = new JLabel("Telefone");
+		lblTel.setForeground(Color.WHITE);
+		lblTel.setBounds(14, 136, 93, 25);
+		panelCadastro.add(lblTel);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setForeground(Color.WHITE);
+		lblTipo.setBounds(14, 173, 93, 25);
+		panelCadastro.add(lblTipo);
+		
+		textFieldNome = new JTextField();
+		textFieldNome.setColumns(10);
+		textFieldNome.setBounds(121, 62, 179, 25);
+		panelCadastro.add(textFieldNome);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(121, 102, 179, 25);
+		panelCadastro.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(121, 139, 179, 25);
+		panelCadastro.add(textField_2);
+		
+		JComboBox cbTipo = new JComboBox();
+		cbTipo.setBounds(121, 173, 179, 25);
+		panelCadastro.add(cbTipo);
+		
+		JPanel pCadastro = new JPanel();
+		pCadastro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				pCadastro.setBackground(Color.GREEN);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				pCadastro.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String user = textFieldNome.getText();
+				
+				JOptionPane.showMessageDialog(null, "Usuário " + user + " cadastrado com sucesso!");
+			}
+		});
+		pCadastro.setLayout(null);
+		pCadastro.setBackground(Color.GRAY);
+		pCadastro.setBounds(64, 254, 179, 47);
+		panelCadastro.add(pCadastro);
+		
+		JLabel lblCadastrar = new JLabel("Cadastrar");
+		lblCadastrar.setForeground(Color.WHITE);
+		lblCadastrar.setBackground(Color.WHITE);
+		lblCadastrar.setBounds(51, 12, 88, 23);
+		pCadastro.add(lblCadastrar);
+		
+		JPanel cpDashBoard_1 = new JPanel();
+		cpDashBoard_1.setLayout(null);
+		cpDashBoard_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		cpDashBoard_1.setBackground(new Color(0, 128, 128));
+		cpDashBoard_1.setBounds(499, 144, 475, 400);
+		panelContentProfile.add(cpDashBoard_1);
+		
+		JPanel panelCadastro_1 = new JPanel();
+		panelCadastro_1.setLayout(null);
+		panelCadastro_1.setBackground(new Color(47, 79, 79));
+		panelCadastro_1.setBounds(77, 49, 314, 326);
+		cpDashBoard_1.add(panelCadastro_1);
+		
+		JLabel lblListasDeUsurios = new JLabel("Lista de Usuários");
+		lblListasDeUsurios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblListasDeUsurios.setForeground(Color.WHITE);
+		lblListasDeUsurios.setBounds(77, 12, 164, 38);
+		panelCadastro_1.add(lblListasDeUsurios);
+		
+		JPanel pListar = new JPanel();
+		pListar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				pListar.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				pListar.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "Ainda falta implementar essa feature ;) kkk");
+			}
+		});
+		pListar.setLayout(null);
+		pListar.setBackground(Color.GRAY);
+		pListar.setBounds(64, 254, 179, 47);
+		panelCadastro_1.add(pListar);
+		
+		JLabel lblListar = new JLabel("Listar");
+		lblListar.setForeground(Color.WHITE);
+		lblListar.setBackground(Color.WHITE);
+		lblListar.setBounds(67, 12, 88, 23);
+		pListar.add(lblListar);
+		
+		JLabel lblSejaBemVindo = new JLabel("Seja Bem Vindo!");
+		lblSejaBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSejaBemVindo.setForeground(Color.WHITE);
+		lblSejaBemVindo.setBounds(340, 52, 314, 25);
+		panelContentProfile.add(lblSejaBemVindo);
+		panelContentProfile.setVisible(false);
+		
+		panelContentHome.setBackground(new Color(0, 128, 128));
+		panelContentHome.setBounds(300, 0, 981, 720);
+		contentPane.add(panelContentHome);
+		panelContentHome.setLayout(null);
+		
+		JPanel userList = new JPanel();
+		userList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				userList.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				userList.setBackground(Color.DARK_GRAY);
+			}
+		});
+		userList.setBackground(new Color(47, 79, 79));
+		userList.setBounds(46, 140, 274, 237);
+		panelContentHome.add(userList);
+		userList.setLayout(null);
+		
+		JLabel lblUsurios = new JLabel("Usuários");
+		lblUsurios.setForeground(Color.WHITE);
+		lblUsurios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsurios.setBounds(48, 12, 201, 33);
+		userList.add(lblUsurios);
+		
+		JLabel lblUserIcon = new JLabel("");
+		lblUserIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserIcon.setBounds(48, 57, 180, 149);
+		userList.add(lblUserIcon);
+		lblUserIcon.setIcon(new ImageIcon(img_user));
+		
+		JPanel adminList = new JPanel();
+		adminList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				adminList.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				adminList.setBackground(Color.DARK_GRAY);
+			}
+		});
+		adminList.setLayout(null);
+		adminList.setBackground(new Color(47, 79, 79));
+		adminList.setBounds(351, 140, 274, 237);
+		panelContentHome.add(adminList);
+		
+		JLabel lblAdmnistradores = new JLabel("Admnistradores");
+		lblAdmnistradores.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdmnistradores.setForeground(Color.WHITE);
+		lblAdmnistradores.setBounds(41, 12, 201, 33);
+		adminList.add(lblAdmnistradores);
+		
+		JLabel lblAdminIcon = new JLabel("");
+		lblAdminIcon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAdminIcon.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAdminIcon.setBackground(Color.DARK_GRAY);
+			}
+		});
+		lblAdminIcon.setBackground(UIManager.getColor("Button.darkShadow"));
+		lblAdminIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdminIcon.setBounds(51, 57, 180, 149);
+		adminList.add(lblAdminIcon);
+		lblAdminIcon.setIcon(new ImageIcon(img_admin));
+		
+		JPanel userTotal = new JPanel();
+		userTotal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				userTotal.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				userTotal.setBackground(Color.DARK_GRAY);
+			}
+		});
+		userTotal.setLayout(null);
+		userTotal.setBackground(new Color(47, 79, 79));
+		userTotal.setBounds(654, 140, 274, 237);
+		panelContentHome.add(userTotal);
+		
+		JLabel lblTotal = new JLabel("Total");
+		lblTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotal.setForeground(Color.WHITE);
+		lblTotal.setBounds(49, 12, 201, 33);
+		userTotal.add(lblTotal);
+		
+		JLabel lblTotalUsersIcon = new JLabel("");
+		lblTotalUsersIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalUsersIcon.setBounds(49, 51, 180, 149);
+		userTotal.add(lblTotalUsersIcon);
+		lblTotalUsersIcon.setIcon(new ImageIcon(img_total));
+		
+		JPanel clima = new JPanel();
+		clima.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				clima.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				clima.setBackground(Color.DARK_GRAY);
+			}
+		});
+		clima.setLayout(null);
+		clima.setBackground(new Color(47, 79, 79));
+		clima.setBounds(175, 407, 274, 237);
+		panelContentHome.add(clima);
+		
+		JLabel lblClimaDeHoje = new JLabel("Clima de Hoje");
+		lblClimaDeHoje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClimaDeHoje.setForeground(Color.WHITE);
+		lblClimaDeHoje.setBounds(41, 12, 201, 33);
+		clima.add(lblClimaDeHoje);
+		
+		JLabel lblClimaIcon = new JLabel("");
+		lblClimaIcon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblClimaIcon.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblClimaIcon.setBackground(Color.DARK_GRAY);
+			}
+		});
+		lblClimaIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClimaIcon.setBounds(51, 57, 180, 149);
+		clima.add(lblClimaIcon);
+		lblClimaIcon.setIcon(new ImageIcon(img_clima));
+		
+		JPanel hora = new JPanel();
+		hora.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				hora.setBackground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				hora.setBackground(Color.DARK_GRAY);
+			}
+		});
+		hora.setLayout(null);
+		hora.setBackground(new Color(47, 79, 79));
+		hora.setBounds(572, 407, 274, 237);
+		panelContentHome.add(hora);
+		
+		JLabel lblHoraDeHoje = new JLabel("Hora de Hoje");
+		lblHoraDeHoje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoraDeHoje.setForeground(Color.WHITE);
+		lblHoraDeHoje.setBounds(48, 12, 201, 33);
+		hora.add(lblHoraDeHoje);
+		
+		JLabel lblHoraIcon = new JLabel("");
+		lblHoraIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoraIcon.setBounds(48, 55, 180, 149);
+		hora.add(lblHoraIcon);
+		lblHoraIcon.setIcon(new ImageIcon(img_hora));
+		
+		panelContentHome.setVisible(true);
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBackground(new Color(47, 79, 79));
@@ -122,6 +461,10 @@ public class Dashboard extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				pHome.setBackground(new Color(47, 79, 79));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ativarContent("home");
+			}
 		});
 		pHome.setBackground(new Color(47, 79, 79));
 		pHome.setBounds(0, 142, 300, 73);
@@ -151,6 +494,10 @@ public class Dashboard extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				pProfile.setBackground(new Color(47, 79, 79));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ativarContent("profile");
+			}
 		});
 		pProfile.setBackground(new Color(47, 79, 79));
 		pProfile.setBounds(0, 215, 300, 73);
@@ -179,6 +526,12 @@ public class Dashboard extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				pSignOut.setBackground(new Color(47, 79, 79));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Você realmente deseja sair?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Dashboard.this.dispose();
+				}
 			}
 		});
 		pSignOut.setBackground(new Color(47, 79, 79));
@@ -231,5 +584,17 @@ public class Dashboard extends JFrame {
 		lblBurgerLeft.setBackground(new Color(47, 79, 79));
 		lblBurgerLeft.setIcon(new ImageIcon(img_burger_menu));
 		setLocationRelativeTo(null);
+		
+	}
+	
+	public void ativarContent(String name) {
+		if(name.equals("home")) {
+			panelContentHome.setVisible(true);
+			panelContentProfile.setVisible(false);
+		} else if(name.equals("profile")) {
+			panelContentHome.setVisible(false);
+			panelContentProfile.setVisible(true);
+		}
+		
 	}
 }
