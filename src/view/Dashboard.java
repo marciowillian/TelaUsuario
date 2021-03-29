@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
+import java.awt.Font;
 
 public class Dashboard extends JFrame {
 
@@ -550,6 +551,12 @@ public class Dashboard extends JFrame {
 		labelSignoutIcon.setBounds(0, 0, 70, 73);
 		pSignOut.add(labelSignoutIcon);
 		labelSignoutIcon.setIcon(new ImageIcon(img_signout));
+		
+		JLabel lblCopyright = new JLabel("Copyright©2021 - Marcio Willian");
+		lblCopyright.setFont(new Font("Dialog", Font.BOLD, 10));
+		lblCopyright.setForeground(Color.WHITE);
+		lblCopyright.setBounds(55, 693, 189, 15);
+		panelMenu.add(lblCopyright);
 		
 		JLabel lblBurgerLeft = new JLabel("");
 		lblBurgerLeft.setBounds(0, 12, 52, 40);
