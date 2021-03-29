@@ -32,6 +32,7 @@ public class ViewLogin extends JFrame {
 	private JPasswordField txtPassword;
 	private JLabel lblUserMessageLogin = new JLabel("");
 	
+	private Dashboard dash;
 	private ViewUser viewUser;
 
 	/**
@@ -55,6 +56,7 @@ public class ViewLogin extends JFrame {
 	 */
 	public ViewLogin() {
 		
+		dash = new Dashboard();
 		viewUser = new ViewUser();
 		
 		setUndecorated(true);
@@ -159,7 +161,7 @@ public class ViewLogin extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(txtUsername.getText().equals("admin") && txtPassword.getText().equals("admin123")) {
 					System.out.println("Usuário logado com sucesso!!!");
-					viewUser.show();
+					dash.show();
 				} else if(txtUsername.getText().equals("") || 
 						txtUsername.getText().equals(txtUsername.getText().trim().replace(" ", "").replace("á", "a").equals("Nomedousuario")) || 
 						txtPassword.getText().equals("") || txtPassword.getText().equals("Senha")) {

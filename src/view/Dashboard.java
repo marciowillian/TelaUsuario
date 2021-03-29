@@ -10,19 +10,27 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Dashboard extends JFrame {
-	
-	private Image img_logo = new ImageIcon(ViewLogin.class.getResource("/images/peoples-login.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-	private Image img_home = new ImageIcon(ViewLogin.class.getResource("/images/home-icon.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-	private Image img_profile = new ImageIcon(ViewLogin.class.getResource("/images/profile-icon.jpg")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-	private Image img_signout = new ImageIcon(ViewLogin.class.getResource("/images/signout-icon.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-	
+
+	private Image img_logo = new ImageIcon(ViewLogin.class.getResource("/images/peoples-login.png")).getImage()
+			.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+	private Image img_home = new ImageIcon(ViewLogin.class.getResource("/images/home-icon.png")).getImage()
+			.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+	private Image img_profile = new ImageIcon(ViewLogin.class.getResource("/images/profile-icon.jpg")).getImage()
+			.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+	private Image img_signout = new ImageIcon(ViewLogin.class.getResource("/images/signout-icon.png")).getImage()
+			.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+	private Image img_burger_menu = new ImageIcon(ViewLogin.class.getResource("/images/burger-menu-icon.png"))
+			.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 
 	private JPanel contentPane;
+	
+	int x = 300;
 
 	/**
 	 * Launch the application.
@@ -62,7 +70,7 @@ public class Dashboard extends JFrame {
 		panelMenu.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(47, 79, 79));
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 300, 142);
 		panelMenu.add(panel);
 		panel.setLayout(null);
@@ -71,6 +79,37 @@ public class Dashboard extends JFrame {
 		lblIcon.setBounds(95, 23, 112, 93);
 		panel.add(lblIcon);
 		lblIcon.setIcon(new ImageIcon(img_logo));
+		
+		JLabel lblBurger = new JLabel("");
+		lblBurger.setBounds(236, 12, 52, 40);
+		panel.add(lblBurger);
+		lblBurger.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(x == 300) {
+					panelMenu.setSize(300, 720);
+					Thread th = new Thread(){
+						@Override
+						public void run(){
+							try{
+								for(int i = 300; i >= 0; i--){
+									Thread.sleep(1);
+									panelMenu.setSize(i,720);
+								}
+							} catch 
+								(Exception e) {
+									JOptionPane.showMessageDialog(null, e);
+								}
+							}
+						};th.start();
+						x = 0;
+					}
+
+				}
+		});
+		lblBurger.setBackground(new Color(47, 79, 79));
+		lblBurger.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBurger.setIcon(new ImageIcon(img_burger_menu));
 		
 		JPanel pHome = new JPanel();
 		pHome.addMouseListener(new MouseAdapter() {
@@ -158,6 +197,39 @@ public class Dashboard extends JFrame {
 		labelSignoutIcon.setBounds(0, 0, 70, 73);
 		pSignOut.add(labelSignoutIcon);
 		labelSignoutIcon.setIcon(new ImageIcon(img_signout));
+		
+		JLabel lblBurgerLeft = new JLabel("");
+		lblBurgerLeft.setBounds(0, 12, 52, 40);
+		contentPane.add(lblBurgerLeft);
+		lblBurgerLeft.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(x == 0) {
+					panelMenu.show();
+					panelMenu.setSize(x, 720);
+					Thread th = new Thread(){
+						@Override
+						public void run(){
+							try{
+								for(int i = 0; i <= x; i++){
+									Thread.sleep(1);
+									panelMenu.setSize(i,720);
+								}
+							} catch 
+								(Exception e) {
+									JOptionPane.showMessageDialog(null, e);
+								}
+							}
+						};th.start();
+						x = 300;
+					}				
+				
+				}
+			
+		});
+		lblBurgerLeft.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBurgerLeft.setBackground(new Color(47, 79, 79));
+		lblBurgerLeft.setIcon(new ImageIcon(img_burger_menu));
 		setLocationRelativeTo(null);
 	}
 }
