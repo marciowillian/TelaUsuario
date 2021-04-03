@@ -88,6 +88,7 @@ public class Dashboard extends JFrame {
 
 		usuario = new Usuario();
 		usuDAO = new UsuarioDAO();
+		String[] tiposUsuarios = {"Cliente", "Administrador", "Vendedor"};
 		
 		setUndecorated(true);
 		
@@ -158,7 +159,7 @@ public class Dashboard extends JFrame {
 		txtTelefone.setBounds(121, 139, 179, 25);
 		panelCadastro.add(txtTelefone);
 		
-		JComboBox cbTipo = new JComboBox();
+		JComboBox cbTipo = new JComboBox(tiposUsuarios);
 		cbTipo.setBounds(121, 173, 179, 25);
 		panelCadastro.add(cbTipo);
 		
@@ -180,11 +181,10 @@ public class Dashboard extends JFrame {
 				usuario.setNome(txtNome.getText());
 				usuario.setEmail(txtEmail.getText());
 				usuario.setTelefone(txtTelefone.getText());
-				usuario.setTipo(1);
+				usuario.setTipo(cbTipo.getSelectedIndex());
 				usuario.setDataCadastro(new Date());
 				
 				usuDAO.save(usuario);
-				
 				JOptionPane.showMessageDialog(null, "Usuário " + user + " cadastrado com sucesso!");
 			}
 		});
