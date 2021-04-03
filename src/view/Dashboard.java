@@ -1,25 +1,27 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.CardLayout;
-import javax.swing.border.LineBorder;
-import javax.swing.JTextField;
+import java.util.Date;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import dao.UsuarioDAO;
+import model.Usuario;
 
 public class Dashboard extends JFrame {
 
@@ -56,10 +58,13 @@ public class Dashboard extends JFrame {
 	int x = 300;
 	private JPanel panelContentHome = new JPanel();
 	private JPanel panelContentProfile = new JPanel();
-	private JTextField textFieldNome;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
+	private JTextField txtNome;
+	private JTextField txtEmail;
+	private JTextField txtTelefone;
+	
+	private UsuarioDAO usuDAO;
+	private Usuario usuario;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -80,6 +85,9 @@ public class Dashboard extends JFrame {
 	 * Create the frame.
 	 */
 	public Dashboard() {
+
+		usuario = new Usuario();
+		usuDAO = new UsuarioDAO();
 		
 		setUndecorated(true);
 		
@@ -135,20 +143,20 @@ public class Dashboard extends JFrame {
 		lblTipo.setBounds(14, 173, 93, 25);
 		panelCadastro.add(lblTipo);
 		
-		textFieldNome = new JTextField();
-		textFieldNome.setColumns(10);
-		textFieldNome.setBounds(121, 62, 179, 25);
-		panelCadastro.add(textFieldNome);
+		txtNome = new JTextField();
+		txtNome.setColumns(10);
+		txtNome.setBounds(121, 62, 179, 25);
+		panelCadastro.add(txtNome);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(121, 102, 179, 25);
-		panelCadastro.add(textField_1);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(121, 102, 179, 25);
+		panelCadastro.add(txtEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(121, 139, 179, 25);
-		panelCadastro.add(textField_2);
+		txtTelefone = new JTextField();
+		txtTelefone.setColumns(10);
+		txtTelefone.setBounds(121, 139, 179, 25);
+		panelCadastro.add(txtTelefone);
 		
 		JComboBox cbTipo = new JComboBox();
 		cbTipo.setBounds(121, 173, 179, 25);
@@ -167,7 +175,15 @@ public class Dashboard extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String user = textFieldNome.getText();
+				String user = txtNome.getText();
+				
+				usuario.setNome(txtNome.getText());
+				usuario.setEmail(txtEmail.getText());
+				usuario.setTelefone(txtTelefone.getText());
+				usuario.setTipo(1);
+				usuario.setDataCadastro(new Date());
+				
+				usuDAO.save(usuario);
 				
 				JOptionPane.showMessageDialog(null, "Usuário " + user + " cadastrado com sucesso!");
 			}

@@ -16,6 +16,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import model.Usuario;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -33,8 +36,6 @@ public class ViewLogin extends JFrame {
 	private JLabel lblUserMessageLogin = new JLabel("");
 	
 	private Dashboard dash;
-	private ViewUser viewUser;
-
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +58,6 @@ public class ViewLogin extends JFrame {
 	public ViewLogin() {
 		
 		dash = new Dashboard();
-		viewUser = new ViewUser();
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
